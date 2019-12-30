@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -47,6 +48,21 @@ public class SlaveService {
             return slaveUser;
         }
         return null;
+    }
+
+
+    /**
+     * 第二个数据库也进行插入，查看事务问题
+     * @param slaveUser
+     * @return
+     */
+    @Transactional(value = "slaveTransactionManager", rollbackFor = Exception.class)
+    public boolean saveSlaveBean(SlaveUser slaveUser){
+        SlaveUser save = slaveRepository.save(slaveUser);
+        if(save!=null){
+            return true;
+        }
+        return false;
     }
 
 

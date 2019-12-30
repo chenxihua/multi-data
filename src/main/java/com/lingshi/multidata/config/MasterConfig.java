@@ -26,8 +26,10 @@ import java.util.Map;
         transactionManagerRef = "masterTransactionManager",
         basePackages = {"com.lingshi.multidata.master.dao"})
 public class MasterConfig {
+
     @Autowired
     private HibernateProperties hibernateProperties;
+
     @Resource
     @Qualifier("masterDataSource")
     private DataSource masterDataSource;

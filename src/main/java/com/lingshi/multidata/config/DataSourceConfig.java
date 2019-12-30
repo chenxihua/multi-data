@@ -14,7 +14,10 @@ import javax.sql.DataSource;
 public class DataSourceConfig {
 
 
-    //master库
+    /**
+     * master库
+     * @return
+     */
     @Primary
     @Bean(name = "masterDataSourceProperties")
     @Qualifier("masterDataSourceProperties")
@@ -31,7 +34,10 @@ public class DataSourceConfig {
         return dataSourceProperties.initializeDataSourceBuilder().build();
     }
 
-    //slave库
+    /**
+     * slave库
+     * @return
+     */
     @Bean(name = "slaveDataSourceProperties")
     @Qualifier("slaveDataSourceProperties")
     @ConfigurationProperties(prefix = "spring.datasource.slave")

@@ -3,16 +3,16 @@ server:
 spring:
   datasource:
     master:
-      # type: com.alibaba.druid.pool.DruidDataSource
-      url: jdbc:mysql://192.168.244.128:3307/jpa?serverTimezone=UTC&characterEncoding=UTF-8
+      type: com.alibaba.druid.pool.DruidDataSource
+      url: jdbc:mysql://localhost:3306/jpa?serverTimezone=UTC&characterEncoding=UTF-8
       username: root
-      password: 123456
+      password: root
       driverClassName: com.mysql.cj.jdbc.Driver     # com.mysql.jdbc.Driver  # com.mysql.cj.jdbc.Driver
     slave:
-      # type: com.alibaba.druid.pool.DruidDataSource
-      url: jdbc:mysql://192.168.244.128:3308/jpa?serverTimezone=UTC&characterEncoding=UTF-8
+      type: com.alibaba.druid.pool.DruidDataSource
+      url: jdbc:mysql://localhost:3306/jpaa?serverTimezone=UTC&characterEncoding=UTF-8
       username: root
-      password: 123456
+      password: root
       driverClassName: com.mysql.cj.jdbc.Driver  # com.mysql.cj.jdbc.Driver
   jpa:
     open-in-view: true

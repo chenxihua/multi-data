@@ -29,7 +29,7 @@ public class MultiSouceController {
      */
     @PostMapping(value = "add", produces = "application/json;charset=UTF-8")
     public Map<String, Object> add(@RequestBody MasterUser masterUser){
-        Map<String, Object> result = new HashMap<>();
+        Map<String, Object> result = new HashMap<>(2);
         boolean add = masterService.add(masterUser);
         result.put("code", 0);
         result.put("data", add);
@@ -44,7 +44,7 @@ public class MultiSouceController {
      */
     @PutMapping(value = "/update", produces = "application/json;charset=UTF-8")
     public Map<String, Object> update(@RequestBody MasterUser masterUser){
-        Map<String, Object> result = new HashMap<>();
+        Map<String, Object> result = new HashMap<>(2);
         boolean update = masterService.update(masterUser);
         result.put("code", 0);
         result.put("data", update);
@@ -59,7 +59,7 @@ public class MultiSouceController {
     @DeleteMapping(value = "/delete")
     public Map<String, Object> delete(@RequestParam Integer id){
         masterService.delete(id);
-        Map<String, Object> result = new HashMap<>();
+        Map<String, Object> result = new HashMap<>(2);
         result.put("code", 0);
         result.put("data", "删除成功");
         return result;
@@ -72,7 +72,7 @@ public class MultiSouceController {
      */
     @GetMapping(value = "/findAll")
     public Map<String, Object> findAll(){
-        Map<String, Object> result = new HashMap<>();
+        Map<String, Object> result = new HashMap<>(2);
         List<SlaveUser> search = slaveService.search();
         result.put("code", 0);
         result.put("data", search);
@@ -87,10 +87,25 @@ public class MultiSouceController {
      */
     @GetMapping(value = "/findById")
     public Map<String, Object> findById(@RequestParam Integer id){
-        Map<String, Object> result = new HashMap<>();
+        Map<String, Object> result = new HashMap<>(2);
         SlaveUser slaveUser = slaveService.searchById(id);
         result.put("code", 0);
         result.put("data", slaveUser);
+        return result;
+    }
+
+
+    /**
+     * 用于第二个数据库的保存问题
+     * @param slaveUser
+     * @return
+     */
+    @PostMapping(value = "saveSlave")
+    public Map<String, Object> saveSlave(@RequestBody SlaveUser slaveUser){
+        Map<String, Object> result = new HashMap<>(2);
+        boolean saveSlaveBean = slaveService.saveSlaveBean(slaveUser);
+        result.put("code", 0);
+        result.put("data", saveSlaveBean);
         return result;
     }
 
